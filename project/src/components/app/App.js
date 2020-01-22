@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { getMoviesHits, movies } from "../services/services";
 import TrendingToday from "../trending-today-page/TrendingToday";
 import { Route, Switch } from "react-router-dom";
-
+import NotFoundPage from "../not-found-page/NotFoundPage";
+import ItemMovie from "../item-movie/ItemMovie"
+import Nav from "../nav/Navigation"
+import Navigation from "../nav/Navigation";
 class App extends Component {
   state = {
     hits: []
@@ -16,7 +19,13 @@ class App extends Component {
   render() {
     return (
       <>
-          <Route path="/movie"  component={TrendingToday} />
+    
+       <Navigation />
+       <Switch>
+          <Route path="/" exact component={TrendingToday} />
+          <Route path={`/movie/:movieId`} component={ItemMovie}/>
+          <Route component={NotFoundPage}/></Switch>
+       
       </>
     );
   }

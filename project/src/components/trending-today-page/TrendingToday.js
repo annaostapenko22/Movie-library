@@ -6,22 +6,30 @@ import {
     NavLink
   } from "react-router-dom";
   import {getMoviesHits, movies} from "../services/services";
-  import styles from "./TrendingToday.module.css"
+  import styles from "./TrendingToday.module.css";
+  import ItemMovie from "../item-movie/ItemMovie"
 class TrendingToday extends Component {
     state = { 
         hits: [],
      }
     async componentDidMount(){
-      const movieItems =  getMoviesHits().then(data => this.setState({hits: data}))
-      console.log(movies().then(data=> console.log(data)))
+     getMoviesHits().then(data => this.setState({hits: data}))
+      // console.log(movies().then(data=> console.log(data)))
     }
   render() {
+    console.log("state", this.state)
     return (
       <>
         <h2>Trending today</h2>
-      <ul className={styles.movieList}>
-    {this.state.hits.map(item=> <NavLink key={item.id} to="/475557">{item.title}</NavLink>)}
+      <ul >
+      {this.state.hits.map(item => (
+           <li key={item.id}>  
+            <NavLink  to={`/movie/${item.id}`}>
+             <p>   {item.title}</p>
+              </NavLink></li>
+            ))}
         </ul>
+  
       </>
     );
   }
