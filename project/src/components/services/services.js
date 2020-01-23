@@ -39,6 +39,23 @@ export const getMovieById = async id => {
     }
 };
 
+export const getActors = async (id)=> {
+  const data = await axios.get(`movie/${id}/credits?api_key=fd2d5e41476f195bd82f8f4bde4b97a7`)
+  return data.data.cast;
+}
+
+export const getReviews = async (id)=> {
+  const data = await axios.get(`movie/${id}/reviews?api_key=fd2d5e41476f195bd82f8f4bde4b97a7`);
+ 
+  return data.data.results;
+}
+
+export const searchMovies = async(string= "girl") => {
+  const data = await axios.get(`search/movie?api_key=fd2d5e41476f195bd82f8f4bde4b97a7&query=${string}&language=en-US&page=1&include_adult=false`)
+  console.log("serv searc", data.data.results)
+  return data.data.results;
+}
+
 export const movies = async () => {
   const data = await axios.get(
     `trending/all/day?api_key=fd2d5e41476f195bd82f8f4bde4b97a7`

@@ -19,3 +19,8 @@
 .poster {
     margin-right: 15px;
 }
+
+.additionalList {
+    display: flex;
+    flex-direction: column;
+}
