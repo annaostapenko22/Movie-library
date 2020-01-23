@@ -50,22 +50,9 @@ export const getReviews = async (id)=> {
   return data.data.results;
 }
 
-export const searchMovies = async(string= "girl") => {
+export const searchMovies = async(string) => {
   const data = await axios.get(`search/movie?api_key=fd2d5e41476f195bd82f8f4bde4b97a7&query=${string}&language=en-US&page=1&include_adult=false`)
   console.log("serv searc", data.data.results)
   return data.data.results;
 }
 
-export const movies = async () => {
-  const data = await axios.get(
-    `trending/all/day?api_key=fd2d5e41476f195bd82f8f4bde4b97a7`
-  );
-  return data;
-};
-
-export const getMovie = async id => {
-  const data = await axios.get(
-    `movie/${id}?api_key=fd2d5e41476f195bd82f8f4bde4b97a7`
-  );
-  return data.data;
-};

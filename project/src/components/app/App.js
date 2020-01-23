@@ -16,14 +16,14 @@ class App extends Component {
     const movieItems = getMoviesHits().then(data =>
       this.setState({ hits: data })
     );
-    console.log(movies().then(data => console.log(data)));
+    
   }
   render() {
     return (
       <>
         <Navigation />
         <Switch>
-          <Route path="/" exact component={TrendingToday} />
+          <Route path="/movie" exact component={TrendingToday} />
           <Route path={`/movie/:movieId`}  component={ItemMovie} />
           <Route path="/movies" component={MovieSearch} />
           <Route component={NotFoundPage} />

@@ -27,12 +27,19 @@ class ItemMoviePage extends Component {
       })
     );
   }
+
+  handleGoBack = ()=> {
+    const { history } = this.props;
+    console.log("loc state", this.props)
+    history.push("/movie")
+ 
+  }
   render() {
     const { id, title, overview, genres, score, path } = this.state;
-    getMovie("89393").then(data => console.log(data));
+  
     return (
       <>
-        <button>Back to all movies</button>
+        <button onClick={this.handleGoBack}>&larr; Back to all movies</button>
         <div className={styles.container}>
           <img
             src={`https://image.tmdb.org/t/p/w300/${path}`}

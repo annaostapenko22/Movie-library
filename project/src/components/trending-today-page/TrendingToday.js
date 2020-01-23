@@ -3,6 +3,7 @@ import { Switch, Route, Link, NavLink } from "react-router-dom";
 import { getMoviesHits, movies } from "../services/services";
 import styles from "./TrendingToday.module.css";
 import ItemMovie from "../item-movie/ItemMovie";
+import Cast from "../item-movie/cast/Cast"
 class TrendingToday extends Component {
   state = {
     hits: []
@@ -22,6 +23,7 @@ class TrendingToday extends Component {
               <NavLink to={`/movie/${item.id}`}>
                 <p> {item.title}</p>
               </NavLink>
+           
             </li>
           ))}
         </ul>

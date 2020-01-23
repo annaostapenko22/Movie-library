@@ -1,38 +1,50 @@
 import React, { Component } from "react";
-import {searchMovies} from "../services/services";
-import {NavLink} from "react-router-dom"
+import { searchMovies } from "../services/services";
+import { NavLink } from "react-router-dom";
+import SearchPanel from "./search-panel/SearchPanel";
 class MovieSearch extends Component {
   state = {
     query: "",
     searchMovieListResult: []
   };
-  async componentDidMount(){
-  await  searchMovies().then(data=> this.setState({searchMovieListResult: data}))
-    console.log("SEARCH", this.state.searchMovieListResult)
+
+  async componentDidMount() {
+// JSON.parse(localStorage.getItem("movies"))
+  }
+  async componentDidUpdate(prevProps, prevState) {
+    
+      if (prevState.query !== this.state.query) {
+        searchMovies(this.state.query).then(data =>
+          this.setState({ searchMovieListResult: data })
+          );
+      
+        }
+        localStorage.setItem("movies", JSON.stringify(this.state.searchMovieListResult))
+      
+    console.log("SEARCH", this.state);
   }
 
-  handleChange = (e)=> {
-    console.log(e.target.value)
-    const query = e.target.value;
-    this.setState({query})
-  }
+  handleChange = e => {
+    console.log(e.target.value);
+  };
 
-  handleSubmit = (e)=> {
-    e.preventDefault()
-    const query = e.target.value;
-    this.setState({query})
-// this.setState({query: ""})
-  }
-  render () {
-   const {searchMovieListResult} = this.state;
+  handleSubmit = value => {
+    this.setState({ query: value });
+    // this.setState({query: ""})
+  };
+  render() {
+    const { searchMovieListResult } = this.state;
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-          <input type="search" placeholder="Search" onChange={this.handleChange}  />
-          <button>Go!</button>
-        </form>
+        <SearchPanel onHandleSubmit={this.handleSubmit} />
         <ul>
-    {searchMovieListResult.map(item => <li><NavLink to={`/movie/${item.id}`}><p>{item.title || item.name}</p></NavLink></li>)}
+          {searchMovieListResult.map(item => (
+            <li>
+              <NavLink to={`/movie/${item.id}`}>
+                <p>{item.title || item.name}</p>
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </>
     );
