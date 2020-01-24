@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getIdFromProps } from "../ItemMovie";
 import { getReviews } from "../../services/services";
+import styles from "./Reviews.module.css"
 class Reviews extends Component {
   state = {
     reviews: []
@@ -17,7 +18,7 @@ class Reviews extends Component {
     return (
       <>
       {this.state.reviews.length > 0 ? (
-        <ul>
+        <ul className={styles.list}>
           {this.state.reviews.map(item => (
             <li>
               <h4>Author: {item.author} </h4> <p>{item.content}</p>
