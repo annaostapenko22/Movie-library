@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Cast from "../item-movie/cast/Cast";
-import Reviews from "../item-movie/reviews/Reviews"
-import { Switch, Route, Link, NavLink, withRouter } from "react-router-dom";
-import { getMovieById, getMovie } from "../services/services";
+import Reviews from "../item-movie/reviews/Reviews";
+import { Route, NavLink, withRouter } from "react-router-dom";
+import { getMovieById } from "../services/services";
 import styles from "./ItemMovie.module.css";
-import { searchMovies } from "../services/services";
 export const getIdFromProps = props => props.match.params.movieId;
 class ItemMoviePage extends Component {
   state = {
@@ -15,7 +14,6 @@ class ItemMoviePage extends Component {
     genres: [],
     score: null,
     path: null
-   
   };
   async componentDidMount() {
     const id = getIdFromProps(this.props);
@@ -30,29 +28,21 @@ class ItemMoviePage extends Component {
         path: data.path
       })
     );
-    console.log("locastatefrom", this.props.location.state.from)
   }
 
   handleGoBack = () => {
     const { history, location } = this.props;
-    console.log("HERE LOCATION",location)
     if (location.state) {
-      // searchMovies(JSON.parse(localStorage.getItem("query"))).then(data =>
-      //   this.setState({ searchMovieListResult: data })
-      // );
       return history.push(location.state.from);
     } else {
       history.push("/");
     }
-    
   };
   render() {
     const { id, title, overview, genres, score, path } = this.state;
 
     return (
       <>
-              {/* <Route path={`/movie/:movieId/credits`} component={Cast} />
-        <Route path={`/movie/:movieId/reviews`} component={Reviews} /> */}
         <button onClick={this.handleGoBack} className={styles.backBTN}>
           &larr; Back to all movies
         </button>
@@ -77,10 +67,10 @@ class ItemMoviePage extends Component {
             <h4>Additional information:</h4>
             <ul className={styles.additionalList}>
               <NavLink
-               to={{
-                pathname: `/movie/${this.state.id}/credits`,
-                state: { from: `/movie/${this.state.id}` }
-              }}
+                to={{
+                  pathname: `/movie/${this.state.id}/credits`,
+                  state: { from: this.props.location }
+                }}
                 itemId={this.state.id}
                 className={styles.additionalListLink}
                 activeClassName={styles.additionalListLinkActive}
@@ -88,10 +78,10 @@ class ItemMoviePage extends Component {
                 Cast
               </NavLink>
               <NavLink
-              to={{
-                pathname: `/movie/${this.state.id}/reviews`,
-                state: { from: `/movie/${this.state.id}` }
-              }}
+                to={{
+                  pathname: `/movie/${this.state.id}/reviews`,
+                  state: { from: this.props.location }
+                }}
                 className={styles.additionalListLink}
                 activeClassName={styles.additionalListLinkActive}
               >

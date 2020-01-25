@@ -11,7 +11,6 @@ class Cast extends Component {
     const data = await getActors(id).then(data =>
       this.setState({ cast: data })
     );
-    console.log("HERE", this.state);
   }
   render() {
     return (
