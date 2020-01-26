@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getActors } from "../../services/services";
+import { getActors } from "../../../services/services";
 import { getIdFromProps } from "../ItemMovie";
 import styles from "./Cast.module.css";
 class Cast extends Component {

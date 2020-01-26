@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Cast from "../item-movie/cast/Cast";
-import Reviews from "../item-movie/reviews/Reviews";
+import Cast from "./cast/Cast";
+import Reviews from "./reviews/Reviews";
 import { Route, NavLink, withRouter } from "react-router-dom";
-import { getMovieById } from "../services/services";
+import { getMovieById } from "../../services/services";
 import styles from "./ItemMovie.module.css";
 export const getIdFromProps = props => props.match.params.movieId;
 class ItemMoviePage extends Component {
@@ -68,8 +68,7 @@ class ItemMoviePage extends Component {
             <ul className={styles.additionalList}>
               <NavLink
                 to={{
-                  pathname: `/movie/${this.state.id}/credits`,
-                  state: { from: this.props.location }
+                  pathname: `/movie/${this.state.id}/credits`
                 }}
                 itemId={this.state.id}
                 className={styles.additionalListLink}
@@ -79,8 +78,7 @@ class ItemMoviePage extends Component {
               </NavLink>
               <NavLink
                 to={{
-                  pathname: `/movie/${this.state.id}/reviews`,
-                  state: { from: this.props.location }
+                  pathname: `/movie/${this.state.id}/reviews`
                 }}
                 className={styles.additionalListLink}
                 activeClassName={styles.additionalListLinkActive}

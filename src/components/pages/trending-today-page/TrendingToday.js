@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { getMoviesHits } from "../services/services";
+import { getMoviesHits } from "../../services/services";
 import styles from "./TrendingToday.module.css";
 
 class TrendingToday extends Component {

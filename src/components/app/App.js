@@ -6,21 +6,21 @@ import styles from "./App.module.css";
 import Loader from "react-loader-spinner"
 const TrendingToday = lazy(() =>
   import(
-    "../trending-today-page/TrendingToday" /* webpackChunkName: "home-page(trending-today)" */
+    "../pages/trending-today-page/TrendingToday" /* webpackChunkName: "home-page(trending-today)" */
   )
 );
 
 const ItemMovie = lazy(() =>
-  import("../item-movie/ItemMovie" /* webpackChunkName: "item-movie" */)
+  import("../pages/item-movie-page/ItemMovie" /* webpackChunkName: "item-movie" */)
 );
 
 const MovieSearch = lazy(() =>
-  import("../movie-search/MovieSearch" /* webpackChunkName: "movie-search" */)
+  import("../pages/movie-search-page/MovieSearch" /* webpackChunkName: "movie-search" */)
 );
 
 const NotFoundPage = lazy(() =>
   import(
-    "../not-found-page/NotFoundPage" /* webpackChunkName: "not-found-page" */
+    "../pages/not-found-page/NotFoundPage" /* webpackChunkName: "not-found-page" */
   )
 );
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
          color="#00BFFF"
          height={120}
          width={120}
-         timeout={3000} //3 secs
+         timeout={3000} 
 className={styles.loader}
       />}>
           <Switch>

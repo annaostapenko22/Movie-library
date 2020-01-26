@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { searchMovies } from "../services/services";
+import { searchMovies } from "../../services/services";
 import { NavLink } from "react-router-dom";
 import SearchPanel from "./search-panel/SearchPanel";
 import queryString from "query-string";

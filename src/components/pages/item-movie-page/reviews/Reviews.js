@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getIdFromProps } from "../ItemMovie";
-import { getReviews } from "../../services/services";
+import { getReviews } from "../../../services/services";
 import styles from "./Reviews.module.css"
 class Reviews extends Component {
   state = {
@@ -12,7 +12,6 @@ class Reviews extends Component {
       this.setState({ reviews: data})
     );
 
-    console.log("HERE", this.state.reviews);
   }
   render() {
     return (
